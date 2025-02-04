@@ -1,0 +1,19 @@
+This project includes code from Solana DID, originally developed by Martin Riedel
+and licensed under the MIT License.
+
+Original Repository: https://github.com/identity-com/sol-did
+Original License: MIT (see LICENSE file)
+
+Modifications by Chris Madison:
+
+- Extracted the sol_did/programs/sol_did directory from the original monorepo for standalone use.
+- Adjusted Cargo.toml for independent compilation.
+- Updated dependencies and refactored to support anchor 0.29.0.
+- Migrated `*ctx.bumps.get("did_data").unwrap()` to `ctx.bumps.did_data` in instructions/initialize.rs and instructions/migrate.rs
+- Specific import of anchor borsch `use anchor_lang::prelude::borsch` in state/did_accounts.rs and legacy/legacy_did_accounts.rs
+- Updated state/did_accounts:
+  - set_native_controllers to use Pubkey::new_from_array instead of deprecated Pubkey::new
+  - added lifetime to is_authority function `pub fn is_authority<'a> ... did_account: &'a AccountInfo<'a>...`
+
+Copyright 2025 Chris Madison
+Licensed under the MIT License (see LICENSE file).
